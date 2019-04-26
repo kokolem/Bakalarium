@@ -11,4 +11,5 @@ Plánem je vytvořit kompletní náhradu pro oficiální aplikaci. To znamená, 
 Další moduly jsou druhotné, ačkoliv je mám v plánu přidat, nestane se tak dřív, než budou implementovány tyto.
 
 ## Momentální stav
-Hlavní prioritou je nyní zprovoznění úkolů. Další moduly budou následovat.
+Nyní je funkční pouze přihlašování. Po zadání správných přihlašovacích údajů a adresy školního serveru se zobrazí jméno uživatele.
+Hlavní prioritou ve vývoji je nyní zprovoznění úkolů. Další moduly budou následovat.

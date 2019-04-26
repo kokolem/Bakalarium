@@ -7,6 +7,7 @@ Plánem je vytvořit kompletní náhradu pro oficiální aplikaci. To znamená, 
 * Známky
 * Zprávy (rozhodl jsem se nepoužívat název Komens)
 * Suplování
+
 Další moduly jsou druhotné, ačkoliv je mám v plánu přidat, nestane se tak dřív, než budou implementovány tyto.
 
 ## Momentální stav

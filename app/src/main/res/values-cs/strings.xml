@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bakalarium</string>
+    <string name="archive">Archiv</string>
+    <string name="done">Hotové</string>
+    <string name="login">Přihlásit se</string>
+    <string name="login_1st_person">Přihlašte se</string>
+    <string name="password">Heslo</string>
+    <string name="school_list">Seznam škol</string>
+    <string name="school_url">Adresa školních Bakalářů</string>
+    <string name="school_url_example">Například https://vaseskola.bakalari.cz.</string>
+    <string name="todo">Zadané</string>
+    <string name="unofficial_app_warning">Tato aplikace není oficiální aplikací k systému Bakaláři. Není produktem firmy BAKALÁŘI software s.r.o. Zadané přihlašovací údaje budou uloženy do vašeho zařízení a v zašifrované podobě odesílány na adresu zadanou do pole adresa školních Bakalářů.</string>
+    <string name="username">Uživatelské jméno</string>
+    <string name="wrong_adress">Zadaná adresa není adresou serveru Bakalářů.</string>
+    <string name="wrong_password">Zadané heslo není správně.</string>
+    <string name="wrong_username">Zadané uživatelské jméno není správně.</string>
+    <string name="error_blank_field">Žádné pole nesmí být prázdné.</string>
+    <string name="unknown_error_no_internet">Neznámá chyba, nebo chybí připojení k internetu.</string>
+    <string name="cant_connect">Nelze se spojit se serverem Bakalářů. Data nemusí být aktuální.</string>
+    <string name="user_logged_in">Přihlášen uživatel %1$s.</string>
+    <string name="wrong_address_no_internet">Zadaná adresa není adresou serveru Bakalářů, nebo chybí připojení k internetu.</string>
+</resources>

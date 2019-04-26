@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Bakalarium</string>
+    <string name="todo">Todo</string>
+    <string name="done">Done</string>
+    <string name="archive">Archive</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="school_url">School Bakaláři Address</string>
+    <string name="school_url_example">E.g. https://yourschool.bakalari.cz.</string>
+    <string name="login">Log in</string>
+    <string name="unofficial_app_warning">This app is not the official Bakaláři app. It is not a product of BAKALÁŘI software s.r.o company. The username and password you enter will be stored in your device and in encrypted form sent to the URL you enter into the School Bakaláři Address field.</string>
+    <string name="login_1st_person">Log in</string>
+    <string name="wrong_username">The username is not correct.</string>
+    <string name="wrong_adress">The address does not belong to any Bakaláři server.</string>
+    <string name="wrong_password">The password is not correct.</string>
+    <string name="school_list">School list</string>
+    <string name="error_blank_field">No field can be empty.</string>
+    <string name="unknown_error_no_internet">Unknown error or no internet connection.</string>
+    <string name="cant_connect">Unable to connect to Bakaláři. Data may not be up-to-date.</string>
+    <string name="user_logged_in">User %1$s is now logged in.</string>
+    <string name="wrong_address_no_internet">The address does not belong to any Bakaláři server or there is no internet connection.</string>
+</resources>

@@ -7,6 +7,9 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+
 import org.simpleframework.xml.convert.AnnotationStrategy;
 import org.simpleframework.xml.core.Persister;
 
@@ -14,20 +17,17 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-
+import cz.vitek.bakalarium.Interfaces.BakalariAPI;
+import cz.vitek.bakalarium.Interfaces.HomeworkDao;
+import cz.vitek.bakalarium.POJOs.Homework;
+import cz.vitek.bakalarium.POJOs.HomeworkList;
+import cz.vitek.bakalarium.R;
 import cz.vitek.bakalarium.Utils.TokenGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
-import cz.vitek.bakalarium.Interfaces.BakalariAPI;
-import cz.vitek.bakalarium.Interfaces.HomeworkDao;
-import cz.vitek.bakalarium.POJOs.Homework;
-import cz.vitek.bakalarium.POJOs.HomeworkList;
-import cz.vitek.bakalarium.R;
 
 public class HomeworkRepository {
     private final HomeworkDao homeworkDao;
@@ -94,8 +94,8 @@ public class HomeworkRepository {
 
         // get token and its timestamp from shared prefs
         SharedPreferences preferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
-        String token = preferences.getString("token","");
-        long tokenTimestamp = preferences.getLong("token_timestamp",0);
+        String token = preferences.getString("token", "");
+        long tokenTimestamp = preferences.getLong("token_timestamp", 0);
 
         // if there is no token or the token is invalid, get a new token
         // once the new token is calculated, fetch the new data
@@ -103,7 +103,7 @@ public class HomeworkRepository {
         if (!DateUtils.isToday(tokenTimestamp) || token.equals("")) {
             TokenGenerator.saveToken(context, new Callable() {
                 @Override
-                public Object call(){
+                public Object call() {
                     fetch();
                     return null;
                 }
@@ -111,17 +111,16 @@ public class HomeworkRepository {
         } else fetch();
     }
 
-    private void fetch(){
+    private void fetch() {
         SharedPreferences preferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
 
         // make the request
-        Call<HomeworkList> homeworkListCall = bakalariAPI.getHomework(preferences.getString("token",""));
+        Call<HomeworkList> homeworkListCall = bakalariAPI.getHomework(preferences.getString("token", ""));
         homeworkListCall.enqueue(new Callback<HomeworkList>() {
             @Override
             public void onResponse(@NonNull Call<HomeworkList> call, @NonNull final Response<HomeworkList> response) {
-                if (response.body().getList() != null) { // could be null if the server is down or if the token is invalid
-
-                    // save the data to the database in background - do not block UI thread
+                if (response.body().getList() != null) { // could be null if the server is down or malfunctioning
+                    // save the data into the database in background - don't block UI thread
                     new AsyncTask<Void, Void, Void>() {
                         @Override
                         protected Void doInBackground(Void... voids) {
@@ -130,12 +129,13 @@ public class HomeworkRepository {
                                 // if there is a new homework, save it - if there is an existing homework, update it (its status could be changed)
                                 long exists = homeworkDao.save(homework);
                                 if (exists == -1) homeworkDao.update(homework);
-                                Log.d(TAG, "doInBackground: saved, id: " + exists);
                             }
                             return null;
                         }
 
                     }.execute();
+                } else {
+                    Toast.makeText(context, context.getString(R.string.cant_connect), Toast.LENGTH_LONG).show();
                 }
             }
 

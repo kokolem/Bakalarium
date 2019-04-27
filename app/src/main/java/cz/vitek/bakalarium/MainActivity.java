@@ -52,12 +52,9 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // TODO: The token isn't saved immediately - need to show place holder until it is calculated
-        // if the token is no longer valid or it doesn't even exist, generate it
-
-
         // tabs configuration
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(2);
         tabLayout.setupWithViewPager(viewPager);
 
         // setting up toolbar as actionbar

@@ -10,9 +10,8 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
+        app:cardElevation="1dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="true"
         app:contentPaddingBottom="8dp"

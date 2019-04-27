@@ -9,7 +9,7 @@
     <string name="school_list">Seznam škol</string>
     <string name="school_url">Adresa školních Bakalářů</string>
     <string name="school_url_example">Například https://vaseskola.bakalari.cz.</string>
-    <string name="todo">Zadané</string>
+    <string name="todo">K udělání</string>
     <string name="unofficial_app_warning">Tato aplikace není oficiální aplikací k systému Bakaláři. Není produktem firmy BAKALÁŘI software s.r.o. Zadané přihlašovací údaje budou uloženy do vašeho zařízení a v zašifrované podobě odesílány na adresu zadanou do pole adresa školních Bakalářů.</string>
     <string name="username">Uživatelské jméno</string>
     <string name="wrong_adress">Zadaná adresa není adresou serveru Bakalářů.</string>
@@ -20,4 +20,7 @@
     <string name="cant_connect">Nelze se spojit se serverem Bakalářů. Data nemusí být aktuální.</string>
     <string name="user_logged_in">Přihlášen uživatel %1$s.</string>
     <string name="wrong_address_no_internet">Zadaná adresa není adresou serveru Bakalářů, nebo chybí připojení k internetu.</string>
+    <string name="homework_secondary_title">Zadáno %1$s · Odevzdat %2$s</string>
+    <string name="mark_done">Oznažit jako hotové</string>
+    <string name="mark_todo">Označit k udělání</string>
 </resources>

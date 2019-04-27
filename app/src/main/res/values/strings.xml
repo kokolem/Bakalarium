@@ -19,4 +19,7 @@
     <string name="cant_connect">Unable to connect to Bakaláři. Data may not be up-to-date.</string>
     <string name="user_logged_in">User %1$s is now logged in.</string>
     <string name="wrong_address_no_internet">The address does not belong to any Bakaláři server or there is no internet connection.</string>
+    <string name="homework_secondary_title">Assigned %1$s · Hand in %2$s</string>
+    <string name="mark_done">Mark Done</string>
+    <string name="mark_todo">Mark Todo</string>
 </resources>

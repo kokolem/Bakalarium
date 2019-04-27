@@ -20,12 +20,12 @@ public interface HomeworkDao {
     @Update(onConflict = OnConflictStrategy.IGNORE)
     void update(Homework homework);
 
-    @Query("SELECT * FROM homework WHERE is_archived ORDER BY assigned")
+    @Query("SELECT * FROM homework WHERE is_archived ORDER BY assigned DESC")
     LiveData<List<Homework>> getArchived();
 
-    @Query("SELECT * FROM homework WHERE is_done AND NOT is_archived ORDER BY assigned")
+    @Query("SELECT * FROM homework WHERE is_done AND NOT is_archived ORDER BY assigned DESC")
     LiveData<List<Homework>> getDone();
 
-    @Query("SELECT * FROM homework WHERE NOT is_done AND NOT is_archived ORDER BY assigned")
+    @Query("SELECT * FROM homework WHERE NOT is_done AND NOT is_archived ORDER BY assigned DESC")
     LiveData<List<Homework>> getToDo();
 }

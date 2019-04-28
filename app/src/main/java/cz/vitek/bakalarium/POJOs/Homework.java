@@ -90,8 +90,7 @@ public class Homework {
             assigned = formatter.parse(timeStampAssigned);
         } catch (ParseException ignored){}
 
-        isDone = false;
-        isArchived = status.equals("probehlo"); // TODO: "probehlo" and "aktivni" are not the only possibilites
+        isArchived = status.equals("probehlo"); // TODO: "probehlo" and "aktivni" are not the only possibilities
 
         // replace html break tags with \n (yes, we are getting html from the server, perhaps xss would be possible?)
         if (description != null) description = description.replace("<br />", "\n");

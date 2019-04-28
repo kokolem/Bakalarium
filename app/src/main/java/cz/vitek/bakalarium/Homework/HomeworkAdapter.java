@@ -26,41 +26,66 @@ public class HomeworkAdapter extends RecyclerView.Adapter<HomeworkViewHolder> {
     private int type;
     private List<Homework> dataSet;
     private Context context;
+    private HomeworkViewModel viewModel;
 
-    public HomeworkAdapter(int type, @NonNull List<Homework> dataSet, Context context) {
+    public HomeworkAdapter(int type, List<Homework> dataSet, Context context, HomeworkViewModel viewModel) {
         this.type = type;
         this.dataSet = dataSet;
         this.context = context;
+        this.viewModel = viewModel;
     }
 
     @NonNull
     @Override
     public HomeworkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View homeworkCard = LayoutInflater.from(parent.getContext()).inflate(R.layout.homework, parent, false);
+
         TextView title = homeworkCard.findViewById(R.id.title);
         TextView secondaryTitle = homeworkCard.findViewById(R.id.secondaryTitle);
         TextView supportingText = homeworkCard.findViewById(R.id.supportingText);
         Button button = homeworkCard.findViewById(R.id.buttonFinished);
         ImageView icon = homeworkCard.findViewById(R.id.icon);
+
         return new HomeworkViewHolder(homeworkCard, title, secondaryTitle, supportingText, button, icon);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeworkViewHolder holder, int position) {
-        Homework homework = dataSet.get(position);
+    public void onBindViewHolder(@NonNull HomeworkViewHolder holder, final int position) {
+        final Homework homework = dataSet.get(position);
         holder.getTitle().setText(homework.getTitle());
         holder.getSupportingText().setText(homework.getDescription());
         holder.getIcon().setImageDrawable(MaterialLetterIcon.build(homework.getSubject()));
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM", Locale.getDefault());
+        SimpleDateFormat formatter = new SimpleDateFormat("d.M.", Locale.getDefault());
         String assigned = formatter.format(homework.getAssigned());
         String handIn = formatter.format(homework.getHandIn());
-        holder.getSecondaryTitle().setText(context.getString(R.string.homework_secondary_title, assigned, handIn));
+
+        String secondaryTitle;
+        if (type == 3)
+            secondaryTitle = context.getString(R.string.homework_secondary_title_handed_in, assigned, handIn);
+        else
+            secondaryTitle = context.getString(R.string.homework_secondary_title_hand_in, assigned, handIn);
+        holder.getSecondaryTitle().setText(secondaryTitle);
 
         Button button = holder.getButton();
-        if (type == 0) button.setText(context.getString(R.string.mark_todo));
-        else if (type == 1) button.setText(context.getString(R.string.mark_done));
-        else button.setVisibility(View.GONE);
+        switch (type) {
+            case 1:
+                button.setText(context.getString(R.string.mark_done));
+                break;
+            case 2:
+                button.setText(context.getString(R.string.mark_todo));
+                break;
+            case 3:
+                button.setVisibility(View.GONE);
+                break;
+        }
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.changeDone(homework, type == 1);
+            }
+        });
     }
 
     @Override

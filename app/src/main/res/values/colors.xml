@@ -7,4 +7,5 @@
     <color name="textTitle">#212121</color>
     <color name="textSecondaryTitle">#757575</color>
     <color name="white">#FFFFFF</color>
+    <color name="grey">#E7E5E7</color>
 </resources>

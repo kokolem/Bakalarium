@@ -48,5 +48,10 @@ public class HomeworkViewModel extends AndroidViewModel {
         }
         return homework;
     }
+
+    public void changeDone(Homework homework, boolean done){
+        homework.setDone(done);
+        homeworkRepository.update(homework);
+    }
 }
 

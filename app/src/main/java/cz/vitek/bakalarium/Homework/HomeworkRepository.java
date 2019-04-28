@@ -87,6 +87,17 @@ public class HomeworkRepository {
         return homeworkDao.getArchived();
     }
 
+    public void update(final Homework homework){
+        new AsyncTask<Void, Void, Void>(){
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                homeworkDao.update(homework);
+                return null;
+            }
+        }.execute();
+    }
+
     public void refresh() {
 
         // save the time the data was last updated
@@ -126,9 +137,17 @@ public class HomeworkRepository {
                         protected Void doInBackground(Void... voids) {
                             for (final Homework homework : response.body().getList()) {
 
-                                // if there is a new homework, save it - if there is an existing homework, update it (its status could be changed)
-                                long exists = homeworkDao.save(homework);
-                                if (exists == -1) homeworkDao.update(homework);
+                                Homework original = homeworkDao.getById(homework.getId());
+                                if (original != null) {
+                                    // if this is an existing homework set it's done property to the current value (before the update) and update the rest
+                                    homework.setDone(original.getDone());
+                                    homeworkDao.update(homework);
+                                } else {
+                                    // if this is a new homework, set it's done property to false and save it
+                                    homework.setDone(false);
+                                    homeworkDao.save(homework);
+                                }
+
                             }
                             return null;
                         }

@@ -20,7 +20,8 @@
     <string name="cant_connect">Nelze se spojit se serverem Bakalářů. Data nemusí být aktuální.</string>
     <string name="user_logged_in">Přihlášen uživatel %1$s.</string>
     <string name="wrong_address_no_internet">Zadaná adresa není adresou serveru Bakalářů, nebo chybí připojení k internetu.</string>
-    <string name="homework_secondary_title">Zadáno %1$s · Odevzdat %2$s</string>
+    <string name="homework_secondary_title_hand_in">Zadáno %1$s · Odevzdat %2$s</string>
+    <string name="homework_secondary_title_handed_in">Zadáno %1$s · Odevzdáno %2$s</string>
     <string name="mark_done">Oznažit jako hotové</string>
     <string name="mark_todo">Označit k udělání</string>
 </resources>

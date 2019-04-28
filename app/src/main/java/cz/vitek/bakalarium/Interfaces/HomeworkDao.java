@@ -20,6 +20,9 @@ public interface HomeworkDao {
     @Update(onConflict = OnConflictStrategy.IGNORE)
     void update(Homework homework);
 
+    @Query("SELECT * FROM homework WHERE id = :id")
+    Homework getById(String id);
+
     @Query("SELECT * FROM homework WHERE is_archived ORDER BY assigned DESC")
     LiveData<List<Homework>> getArchived();
 

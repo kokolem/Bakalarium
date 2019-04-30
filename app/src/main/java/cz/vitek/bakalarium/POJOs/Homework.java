@@ -1,5 +1,13 @@
 package cz.vitek.bakalarium.POJOs;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -10,14 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.Index;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
 import cz.vitek.bakalarium.Utils.Converters;
 
@@ -93,7 +93,8 @@ public class Homework {
             assigned = formatter.parse(timeStampAssigned);
         } catch (ParseException ignored){}
 
-        isArchived = status.equals("probehlo"); // TODO: "probehlo" and "aktivni" are not the only possibilities
+        // TODO: "probehlo" and "aktivni" are not the only possibilities
+        isArchived = status.equals("probehlo");
 
         // replace html break tags with \n (yes, we are getting html from the server, perhaps xss would be possible?)
         if (description != null) description = description.replace("<br />", "\n");

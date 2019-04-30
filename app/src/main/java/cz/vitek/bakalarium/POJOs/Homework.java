@@ -1,12 +1,14 @@
 package cz.vitek.bakalarium.POJOs;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 import org.simpleframework.xml.core.Commit;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
@@ -20,12 +22,13 @@ import androidx.room.TypeConverters;
 import cz.vitek.bakalarium.Utils.Converters;
 
 @Entity(indices = @Index(value = {"id"}, unique = true))
+@TypeConverters(Converters.class)
 @Root(strict = false)
 public class Homework {
 
     @PrimaryKey
-    @Element
     @NonNull
+    @Element
     private String id = "";
 
     @Element(name = "predmet", required = false)
@@ -46,23 +49,24 @@ public class Homework {
     @ColumnInfo(name = "is_archived")
     private Boolean isArchived;
 
+    @Ignore
     @Element(name = "nakdy", required = false)
-    @ColumnInfo(name = "ts_hand_in")
     private String timeStampHandIn;
 
-    @Element(name = "zadano")
-    @ColumnInfo(name = "ts_assigned")
+    @Ignore
+    @Element(name = "zadano", required = false)
     private String timeStampAssigned;
 
     @ColumnInfo(name = "hand_in")
-    @TypeConverters(Converters.class)
     private Date handIn;
 
-    @ColumnInfo(name = "assigned")
-    @TypeConverters(Converters.class)
     private Date assigned;
 
-    public Homework(@NonNull String id, String title, String description, String subject, String status, Boolean isDone, Boolean isArchived, String timeStampHandIn, String timeStampAssigned, Date handIn, Date assigned) {
+    @ColumnInfo(name = "attachments_list")
+    @ElementList(name = "attachments", entry = "attachment", required = false)
+    private List<Attachment> attachmentList;
+
+    public Homework(@NonNull String id, String title, String description, String subject, String status, Boolean isDone, Boolean isArchived, Date handIn, Date assigned, List<Attachment> attachmentList) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -70,10 +74,9 @@ public class Homework {
         this.status = status;
         this.isDone = isDone;
         this.isArchived = isArchived;
-        this.timeStampHandIn = timeStampHandIn;
-        this.timeStampAssigned = timeStampAssigned;
         this.handIn = handIn;
         this.assigned = assigned;
+        this.attachmentList = attachmentList;
     }
 
     @Ignore
@@ -182,6 +185,14 @@ public class Homework {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Attachment> getAttachmentList() {
+        return attachmentList;
+    }
+
+    public void setAttachmentList(List<Attachment> attachmentList) {
+        this.attachmentList = attachmentList;
     }
 
     // only return id for brevity

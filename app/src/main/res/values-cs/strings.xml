@@ -24,4 +24,6 @@
     <string name="homework_secondary_title_handed_in">Zadáno %1$s · Odevzdáno %2$s</string>
     <string name="mark_done">Oznažit jako hotové</string>
     <string name="mark_todo">Označit k udělání</string>
+    <string name="open_attachment">Otevřít přílohu</string>
+    <string name="open_attachments">Otevřít přílohy</string>
 </resources>

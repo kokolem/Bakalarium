@@ -5,21 +5,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class HomeworkViewHolder extends RecyclerView.ViewHolder {
     private TextView title;
     private TextView secondaryTitle;
     private TextView supportingText;
-    private Button button;
+    private Button statusButton;
+    private Button attachmentButton;
     private ImageView icon;
 
-    public HomeworkViewHolder(View itemView, TextView title, TextView secondaryTitle, TextView supportingText, Button button, ImageView icon) {
+    public HomeworkViewHolder(@NonNull View itemView, TextView title, TextView secondaryTitle, TextView supportingText, Button statusButton, Button attachmentButton, ImageView icon) {
         super(itemView);
         this.title = title;
         this.secondaryTitle = secondaryTitle;
         this.supportingText = supportingText;
-        this.button = button;
+        this.statusButton = statusButton;
+        this.attachmentButton = attachmentButton;
         this.icon = icon;
     }
 
@@ -47,12 +50,20 @@ public class HomeworkViewHolder extends RecyclerView.ViewHolder {
         this.supportingText = supportingText;
     }
 
-    public Button getButton() {
-        return button;
+    public Button getStatusButton() {
+        return statusButton;
     }
 
-    public void setButton(Button button) {
-        this.button = button;
+    public void setStatusButton(Button statusButton) {
+        this.statusButton = statusButton;
+    }
+
+    public Button getAttachmentButton() {
+        return attachmentButton;
+    }
+
+    public void setAttachmentButton(Button attachmentButton) {
+        this.attachmentButton = attachmentButton;
     }
 
     public ImageView getIcon() {

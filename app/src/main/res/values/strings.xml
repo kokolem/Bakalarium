@@ -23,4 +23,6 @@
     <string name="homework_secondary_title_handed_in">Assigned %1$s · Handed in %2$s</string>
     <string name="mark_done">Mark Done</string>
     <string name="mark_todo">Mark Todo</string>
+    <string name="open_attachment">Open attachment</string>
+    <string name="open_attachments">Open attachments</string>
 </resources>

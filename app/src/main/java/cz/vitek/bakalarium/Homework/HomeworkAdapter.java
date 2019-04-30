@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import cz.vitek.bakalarium.POJOs.Attachment;
 import cz.vitek.bakalarium.POJOs.Homework;
 import cz.vitek.bakalarium.POJOs.HomeworkViewHolder;
 import cz.vitek.bakalarium.R;
@@ -43,10 +44,11 @@ public class HomeworkAdapter extends RecyclerView.Adapter<HomeworkViewHolder> {
         TextView title = homeworkCard.findViewById(R.id.title);
         TextView secondaryTitle = homeworkCard.findViewById(R.id.secondaryTitle);
         TextView supportingText = homeworkCard.findViewById(R.id.supportingText);
-        Button button = homeworkCard.findViewById(R.id.buttonFinished);
+        Button statusButton = homeworkCard.findViewById(R.id.buttonChangeStatus);
+        Button attachmentButton = homeworkCard.findViewById(R.id.buttonAttachment);
         ImageView icon = homeworkCard.findViewById(R.id.icon);
 
-        return new HomeworkViewHolder(homeworkCard, title, secondaryTitle, supportingText, button, icon);
+        return new HomeworkViewHolder(homeworkCard, title, secondaryTitle, supportingText, statusButton, attachmentButton, icon);
     }
 
     @Override
@@ -67,20 +69,27 @@ public class HomeworkAdapter extends RecyclerView.Adapter<HomeworkViewHolder> {
             secondaryTitle = context.getString(R.string.homework_secondary_title_hand_in, assigned, handIn);
         holder.getSecondaryTitle().setText(secondaryTitle);
 
-        Button button = holder.getButton();
+        Button statusButton = holder.getStatusButton();
         switch (type) {
             case 1:
-                button.setText(context.getString(R.string.mark_done));
+                statusButton.setText(context.getString(R.string.mark_done));
                 break;
             case 2:
-                button.setText(context.getString(R.string.mark_todo));
+                statusButton.setText(context.getString(R.string.mark_todo));
                 break;
             case 3:
-                button.setVisibility(View.GONE);
+                statusButton.setVisibility(View.GONE);
                 break;
         }
 
-        button.setOnClickListener(new View.OnClickListener() {
+        Button attachmentButton = holder.getAttachmentButton();
+        List<Attachment> attachmentList = homework.getAttachmentList();
+
+        if (attachmentList.size() == 0) attachmentButton.setVisibility(View.GONE);
+        else if (attachmentList.size() == 1) attachmentButton.setText(context.getString(R.string.open_attachment));
+        else attachmentButton.setText(context.getString(R.string.open_attachments));
+
+        statusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewModel.changeDone(homework, type == 1);

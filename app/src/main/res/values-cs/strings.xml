@@ -8,7 +8,7 @@
     <string name="password">Heslo</string>
     <string name="school_list">Seznam škol</string>
     <string name="school_url">Adresa školních Bakalářů</string>
-    <string name="school_url_example">Například https://vaseskola.bakalari.cz.</string>
+    <string name="school_url_example">Například https://vaseskola.bakalari.cz/bakaweb.</string>
     <string name="todo">K udělání</string>
     <string name="unofficial_app_warning">Tato aplikace není oficiální aplikací k systému Bakaláři. Není produktem firmy BAKALÁŘI software s.r.o. Zadané přihlašovací údaje budou uloženy do vašeho zařízení a v zašifrované podobě odesílány na adresu zadanou do pole adresa školních Bakalářů.</string>
     <string name="username">Uživatelské jméno</string>
@@ -26,4 +26,6 @@
     <string name="mark_todo">Označit k udělání</string>
     <string name="open_attachment">Otevřít přílohu</string>
     <string name="open_attachments">Otevřít přílohy</string>
+    <string name="attachment_download">Stahuje se příloha domacího ůkolu.</string>
+    <string name="permission_needed">Oprávnění je potřeba pro stahování příloh domácích úkolů..</string>
 </resources>

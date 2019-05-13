@@ -13,16 +13,16 @@ public class HomeworkViewHolder extends RecyclerView.ViewHolder {
     private TextView secondaryTitle;
     private TextView supportingText;
     private Button statusButton;
-    private Button attachmentButton;
+    private ImageView attachment;
     private ImageView icon;
 
-    public HomeworkViewHolder(@NonNull View itemView, TextView title, TextView secondaryTitle, TextView supportingText, Button statusButton, Button attachmentButton, ImageView icon) {
+    public HomeworkViewHolder(@NonNull View itemView, TextView title, TextView secondaryTitle, TextView supportingText, Button statusButton, ImageView attachment, ImageView icon) {
         super(itemView);
         this.title = title;
         this.secondaryTitle = secondaryTitle;
         this.supportingText = supportingText;
         this.statusButton = statusButton;
-        this.attachmentButton = attachmentButton;
+        this.attachment = attachment;
         this.icon = icon;
     }
 
@@ -58,12 +58,12 @@ public class HomeworkViewHolder extends RecyclerView.ViewHolder {
         this.statusButton = statusButton;
     }
 
-    public Button getAttachmentButton() {
-        return attachmentButton;
+    public ImageView getAttachment() {
+        return attachment;
     }
 
-    public void setAttachmentButton(Button attachmentButton) {
-        this.attachmentButton = attachmentButton;
+    public void setAttachment(ImageView attachment) {
+        this.attachment = attachment;
     }
 
     public ImageView getIcon() {

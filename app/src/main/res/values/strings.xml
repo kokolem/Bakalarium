@@ -6,7 +6,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="school_url">School Bakaláři Address</string>
-    <string name="school_url_example">E.g. https://yourschool.bakalari.cz.</string>
+    <string name="school_url_example">E.g. https://yourschool.bakalari.cz/bakaweb.</string>
     <string name="login">Log in</string>
     <string name="unofficial_app_warning">This app is not the official Bakaláři app. It is not a product of BAKALÁŘI software s.r.o company. The username and password you enter will be stored in your device and in encrypted form sent to the URL you enter into the School Bakaláři Address field.</string>
     <string name="login_1st_person">Log in</string>
@@ -25,4 +25,6 @@
     <string name="mark_todo">Mark Todo</string>
     <string name="open_attachment">Open attachment</string>
     <string name="open_attachments">Open attachments</string>
+    <string name="attachment_download">Downloading homework attachment.</string>
+    <string name="permission_needed">The permission is needed in order to download homework attachments.</string>
 </resources>

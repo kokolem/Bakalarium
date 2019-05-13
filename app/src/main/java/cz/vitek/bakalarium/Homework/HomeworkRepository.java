@@ -37,6 +37,7 @@ public class HomeworkRepository {
 
     private static final Object LOCK = new Object();
     private static HomeworkRepository instance;
+    private static SharedPreferences preferences;
 
     private static final String TAG = "Bakalarium";
 
@@ -52,13 +53,14 @@ public class HomeworkRepository {
 
     private HomeworkRepository(Context context) {
         this.context = context.getApplicationContext();
+        preferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
 
         // get Dao
         homeworkDao = Database.getInstance(context).homeworkDao();
 
         // init retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://zsbila.bakalari.cz")
+                .baseUrl(preferences.getString("school_url", ""))
                 .addConverterFactory(SimpleXmlConverterFactory.createNonStrict(
                         new Persister(new AnnotationStrategy())))
                 .build();
@@ -87,8 +89,8 @@ public class HomeworkRepository {
         return homeworkDao.getArchived();
     }
 
-    public void update(final Homework homework){
-        new AsyncTask<Void, Void, Void>(){
+    public void update(final Homework homework) {
+        new AsyncTask<Void, Void, Void>() {
 
             @Override
             protected Void doInBackground(Void... voids) {
@@ -104,7 +106,6 @@ public class HomeworkRepository {
         lastFetched = Calendar.getInstance().getTimeInMillis();
 
         // get token and its timestamp from shared prefs
-        SharedPreferences preferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
         String token = preferences.getString("token", "");
         long tokenTimestamp = preferences.getLong("token_timestamp", 0);
 
@@ -123,38 +124,40 @@ public class HomeworkRepository {
     }
 
     private void fetch() {
-        SharedPreferences preferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
-
         // make the request
         Call<HomeworkList> homeworkListCall = bakalariAPI.getHomework(preferences.getString("token", ""));
         homeworkListCall.enqueue(new Callback<HomeworkList>() {
             @Override
             public void onResponse(@NonNull Call<HomeworkList> call, @NonNull final Response<HomeworkList> response) {
-                if (response.body().getList() != null) { // could be null if the server is down or malfunctioning
-                    // save the data into the database in background - don't block UI thread
-                    new AsyncTask<Void, Void, Void>() {
-                        @Override
-                        protected Void doInBackground(Void... voids) {
-                            for (final Homework homework : response.body().getList()) {
+                if (response.body() != null) {
+                    if (response.body().getList() != null) { // could be null if the server is down or malfunctioning
+                        // save the data into the database in background - don't block UI thread
+                        new AsyncTask<Void, Void, Void>() {
+                            @Override
+                            protected Void doInBackground(Void... voids) {
+                                for (final Homework homework : response.body().getList()) {
 
-                                Homework original = homeworkDao.getById(homework.getId());
-                                if (original != null) {
-                                    // if this is an existing homework set it's done property to the current value (before the update) and update the rest
-                                    homework.setDone(original.getDone());
-                                    homeworkDao.update(homework);
-                                } else {
-                                    // if this is a new homework, set it's done property to false and save it
-                                    homework.setDone(false);
-                                    homeworkDao.save(homework);
+                                    Homework original = homeworkDao.getById(homework.getId());
+                                    if (original != null) {
+                                        // if this is an existing homework set it's done property to the current value (before the update) and update the rest
+                                        homework.setDone(original.getDone());
+                                        homeworkDao.update(homework);
+                                    } else {
+                                        // if this is a new homework, set it's done property to false and save it
+                                        homework.setDone(false);
+                                        homeworkDao.save(homework);
+                                    }
+
                                 }
-
+                                return null;
                             }
-                            return null;
-                        }
 
-                    }.execute();
+                        }.execute();
+                    } else {
+                        Toast.makeText(context, context.getString(R.string.cant_connect), Toast.LENGTH_LONG).show();
+                    }
                 } else {
-                    Toast.makeText(context, context.getString(R.string.cant_connect), Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "onResponse: " + response.toString());
                 }
             }
 

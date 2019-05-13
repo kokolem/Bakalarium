@@ -15,15 +15,15 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import cz.vitek.bakalarium.Interfaces.BakalariAPI;
+import cz.vitek.bakalarium.POJOs.LoginData;
+import cz.vitek.bakalarium.POJOs.TokenData;
+import cz.vitek.bakalarium.Utils.TokenGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import cz.vitek.bakalarium.Interfaces.BakalariAPI;
-import cz.vitek.bakalarium.POJOs.LoginData;
-import cz.vitek.bakalarium.POJOs.TokenData;
-import cz.vitek.bakalarium.Utils.TokenGenerator;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "Bakalarium";
@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                 final String passwordText = password.getText().toString();
                 final String usernameText = username.getText().toString();
                 final String urlText = schoolURL.getText().toString();
+                final String urlTextValidated = urlText.endsWith("/") ? urlText : urlText + "/";
 
                 // reset all errors
                 usernameInputLayout.setErrorEnabled(false);
@@ -85,8 +86,8 @@ public class LoginActivity extends AppCompatActivity {
                     passwordInputLayout.setError(getString(R.string.error_blank_field));
                     valid = false;
                 }
-                if (!(urlText.startsWith("http://") || urlText.startsWith("https://")) || urlText.equals("http://") || urlText.equals("https://") || urlText.startsWith("http://?") || urlText.startsWith("https://?")) {
-                    if (urlText.equals("")) {
+                if (!(urlTextValidated.startsWith("http://") || urlTextValidated.startsWith("https://")) || urlTextValidated.equals("http://") || urlTextValidated.equals("https://") || urlTextValidated.startsWith("http://?/") || urlTextValidated.startsWith("https://?/")) {
+                    if (urlTextValidated.equals("")) {
                         schoolURLInputLayout.setError(getString(R.string.error_blank_field));
                     } else schoolURLInputLayout.setError(getString(R.string.wrong_adress));
                     valid = false;
@@ -103,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     // init retrofit
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(urlText)
+                            .baseUrl(urlTextValidated)
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     final BakalariAPI api = retrofit.create(BakalariAPI.class);
@@ -120,14 +121,16 @@ public class LoginActivity extends AppCompatActivity {
                                     String auth = TokenGenerator.calculateBasicAuth(response.body(), passwordText, usernameText);
 
                                     // Get users real name + verify that the password is right
-                                    Call<LoginData> loginDataCall = api.getLoginData(auth);
+                                    final Call<LoginData> loginDataCall = api.getLoginData(auth);
                                     loginDataCall.enqueue(new Callback<LoginData>() {
                                         @Override
                                         public void onResponse(Call<LoginData> call, Response<LoginData> response) {
                                             if (response.body() != null) { // response body is null if the password isn't right
                                                 // save login credentials to shared prefs
                                                 SharedPreferences.Editor editor = preferences.edit();
-                                                editor.putString("school_url", urlText);
+                                                Log.d(TAG, "onResponse: " + urlText);
+                                                Log.d(TAG, "onResponse: " + urlTextValidated);
+                                                editor.putString("school_url", urlTextValidated);
                                                 editor.putString("username", usernameText);
                                                 editor.putString("password", passwordText); // security level over 9000 (who cares about ur Bakaláři password srsly)
                                                 editor.apply();
@@ -188,6 +191,7 @@ public class LoginActivity extends AppCompatActivity {
                             // TODO: This could also mean that there is no internet connection
                             schoolURLInputLayout.setError(getString(R.string.wrong_address_no_internet));
                             Log.d(TAG, "onFailure: not a real address or no internet connection");
+                            Log.d(TAG, "onFailure: " + t.toString());
                         }
                     });
                 }

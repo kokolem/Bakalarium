@@ -62,7 +62,7 @@ public class Homework {
 
     private Date assigned;
 
-    @ColumnInfo(name = "attachments_list")
+    @ColumnInfo(name = "attachment_list")
     @ElementList(name = "attachments", entry = "attachment", required = false)
     private List<Attachment> attachmentList;
 

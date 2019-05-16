@@ -7,8 +7,8 @@ import java.util.List;
 import cz.vitek.bakalarium.POJOs.Homework;
 
 public class HomeworkDiffCallback extends DiffUtil.Callback {
-    List<Homework> oldHomework;
-    List<Homework> newHomework;
+    private List<Homework> oldHomework;
+    private List<Homework> newHomework;
 
     public HomeworkDiffCallback(List<Homework> oldHomework, List<Homework> newHomework) {
         this.oldHomework = oldHomework;

@@ -15,6 +15,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.IOException;
+
 import cz.vitek.bakalarium.Interfaces.BakalariAPI;
 import cz.vitek.bakalarium.POJOs.LoginData;
 import cz.vitek.bakalarium.POJOs.TokenData;
@@ -150,6 +152,11 @@ public class LoginActivity extends AppCompatActivity {
                                                 loginButton.setClickable(true);
                                                 passwordInputLayout.setError(getString(R.string.wrong_password));
                                                 Log.d(TAG, "onResponse: wrong password");
+                                                try {
+                                                    Log.d(TAG, "onResponse: " + response.errorBody().string());
+                                                } catch (IOException e) {
+                                                    e.printStackTrace();
+                                                }
                                             }
                                         }
 

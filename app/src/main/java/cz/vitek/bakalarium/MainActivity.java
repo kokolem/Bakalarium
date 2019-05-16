@@ -1,20 +1,18 @@
 package cz.vitek.bakalarium;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -35,23 +33,38 @@ public class MainActivity extends AppCompatActivity {
         String url = preferences.getString("school_url", "");
         String username = preferences.getString("username", "");
         String password = preferences.getString("password", "");
-        String token = preferences.getString("token", "");
-        Long tokenTimestamp = preferences.getLong("token_timestamp", 0);
-
-        Log.d(TAG, "onCreate");
-        Log.d(TAG, "url: " + url);
-        Log.d(TAG, "username: " + username);
-        Log.d(TAG, "password: " + password);
-        Log.d(TAG, "token: " + token);
-        Log.d(TAG, "token timestamp: " + tokenTimestamp);
+        boolean askedForPermissions = preferences.getBoolean("permissions_asked", false);
 
         // if the user is logged out, make him log in
         if (username.equals("") || password.equals("") || url.equals("")) {
-            Log.d(TAG, "user isn't logged in");
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
             finish();
             return;
+        }
+
+        // if permissions need to be granted on runtime bcs of the system version
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // and the app didn't already ask for permissions
+            if (!askedForPermissions) {
+                // create a dialog explaining why the permissions are needed
+                new MaterialAlertDialogBuilder(this)
+                        .setTitle(getString(R.string.additional_permissions))
+                        .setMessage(getString(R.string.additional_permissions_explenation))
+                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // request permissions
+                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                            }
+                        })
+                        .setNegativeButton(getString(R.string.no), null)
+                        .show();
+                // save the fact that the app asked for permissions into shared prefs
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("permissions_asked", true);
+                editor.apply();
+            }
         }
 
         // tabs configuration
@@ -62,18 +75,5 @@ public class MainActivity extends AppCompatActivity {
         // setting up toolbar as actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                Toast.makeText(this, getString(R.string.permission_needed), Toast.LENGTH_SHORT).show();
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        1);
-            }
-        }
     }
 }

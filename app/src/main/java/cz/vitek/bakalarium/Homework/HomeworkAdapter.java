@@ -93,6 +93,7 @@ public class HomeworkAdapter extends RecyclerView.Adapter<HomeworkViewHolder> {
         attachment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // TODO: check if the app has permissions
                 HomeworkAttachmentOpener.openAttachment(homework.getAttachmentList(), context);
             }
         });

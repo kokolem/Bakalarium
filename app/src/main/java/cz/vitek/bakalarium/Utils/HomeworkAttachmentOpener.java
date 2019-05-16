@@ -19,6 +19,7 @@ public class HomeworkAttachmentOpener {
         if (attachmentList.size() > 1) attachment = attachmentList.get(0);
         else attachment = chooseAttachment(attachmentList, context);
 
+        // TODO: only download if needed
         downloadAttachment(attachment, context);
     }
 

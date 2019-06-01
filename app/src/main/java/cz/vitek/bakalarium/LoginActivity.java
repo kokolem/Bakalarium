@@ -17,10 +17,10 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;
 
-import cz.vitek.bakalarium.Interfaces.BakalariAPI;
-import cz.vitek.bakalarium.POJOs.LoginData;
-import cz.vitek.bakalarium.POJOs.TokenData;
-import cz.vitek.bakalarium.Utils.TokenGenerator;
+import cz.vitek.bakalarium.interfaces.BakalariAPI;
+import cz.vitek.bakalarium.pojos.LoginData;
+import cz.vitek.bakalarium.pojos.TokenData;
+import cz.vitek.bakalarium.utils.TokenGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

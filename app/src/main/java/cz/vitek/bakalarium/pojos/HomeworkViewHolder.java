@@ -1,4 +1,4 @@
-package cz.vitek.bakalarium.POJOs;
+package cz.vitek.bakalarium.pojos;
 
 import android.view.View;
 import android.widget.Button;

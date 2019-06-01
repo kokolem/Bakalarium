@@ -1,10 +1,10 @@
-package cz.vitek.bakalarium.Utils;
+package cz.vitek.bakalarium.utils;
 
 import androidx.recyclerview.widget.DiffUtil;
 
 import java.util.List;
 
-import cz.vitek.bakalarium.POJOs.Homework;
+import cz.vitek.bakalarium.pojos.Homework;
 
 public class HomeworkDiffCallback extends DiffUtil.Callback {
     private List<Homework> oldHomework;

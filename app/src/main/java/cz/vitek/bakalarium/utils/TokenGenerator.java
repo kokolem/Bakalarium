@@ -1,4 +1,4 @@
-package cz.vitek.bakalarium.Utils;
+package cz.vitek.bakalarium.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,7 +6,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
@@ -14,9 +14,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.Callable;
 
-import cz.vitek.bakalarium.Interfaces.BakalariAPI;
-import cz.vitek.bakalarium.POJOs.TokenData;
 import cz.vitek.bakalarium.R;
+import cz.vitek.bakalarium.interfaces.BakalariAPI;
+import cz.vitek.bakalarium.pojos.TokenData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -81,10 +81,10 @@ public class TokenGenerator {
         String token = tokenData.getSalt() + tokenData.getID() + tokenData.getType() + password;
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
-            byte[] passwordDigest = md.digest(token.getBytes("UTF-8"));
+            byte[] passwordDigest = md.digest(token.getBytes(StandardCharsets.UTF_8));
             token = Base64.encodeToString(passwordDigest, Base64.NO_WRAP);
             token = "*login*" + username + "*pwd*" + token + "*sgn*ANDR" + new SimpleDateFormat("yyyyMMdd", Locale.US).format(new Date());
-            byte[] tokenDigest = md.digest(token.getBytes("UTF-8"));
+            byte[] tokenDigest = md.digest(token.getBytes(StandardCharsets.UTF_8));
             token = Base64.encodeToString(tokenDigest, Base64.NO_WRAP | Base64.URL_SAFE);
             return token;
 
@@ -92,20 +92,12 @@ public class TokenGenerator {
             e.printStackTrace();
             return null;
 
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
         }
     }
 
     // returns "Basic ANDR:<token>" in base64
     public static String calculateBasicAuth(TokenData tokenData, String password, String username) {
         String token = calculateToken(tokenData, password, username);
-        try {
-            return "Basic " + Base64.encodeToString(("ANDR:" + token).getBytes("UTF-8"), Base64.NO_WRAP);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return "Basic " + Base64.encodeToString(("ANDR:" + token).getBytes(StandardCharsets.UTF_8), Base64.NO_WRAP);
     }
 }

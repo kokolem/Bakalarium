@@ -1,8 +1,8 @@
-package cz.vitek.bakalarium.Interfaces;
+package cz.vitek.bakalarium.interfaces;
 
-import cz.vitek.bakalarium.POJOs.HomeworkList;
-import cz.vitek.bakalarium.POJOs.LoginData;
-import cz.vitek.bakalarium.POJOs.TokenData;
+import cz.vitek.bakalarium.pojos.HomeworkList;
+import cz.vitek.bakalarium.pojos.LoginData;
+import cz.vitek.bakalarium.pojos.TokenData;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;

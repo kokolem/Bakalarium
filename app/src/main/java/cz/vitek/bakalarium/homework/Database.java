@@ -1,12 +1,12 @@
-package cz.vitek.bakalarium.Homework;
+package cz.vitek.bakalarium.homework;
 
 import android.content.Context;
 
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import cz.vitek.bakalarium.Interfaces.HomeworkDao;
-import cz.vitek.bakalarium.POJOs.Homework;
+import cz.vitek.bakalarium.interfaces.HomeworkDao;
+import cz.vitek.bakalarium.pojos.Homework;
 
 @androidx.room.Database(entities = {Homework.class}, version = 1)
 public abstract class Database extends RoomDatabase {

@@ -1,4 +1,4 @@
-package cz.vitek.bakalarium.Homework;
+package cz.vitek.bakalarium.homework;
 
 import android.Manifest;
 import android.app.Activity;
@@ -28,12 +28,12 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-import cz.vitek.bakalarium.POJOs.Homework;
-import cz.vitek.bakalarium.POJOs.HomeworkViewHolder;
 import cz.vitek.bakalarium.R;
-import cz.vitek.bakalarium.Utils.HomeworkAttachmentOpener;
-import cz.vitek.bakalarium.Utils.HomeworkDiffCallback;
-import cz.vitek.bakalarium.Utils.MaterialLetterIcon;
+import cz.vitek.bakalarium.pojos.Homework;
+import cz.vitek.bakalarium.pojos.HomeworkViewHolder;
+import cz.vitek.bakalarium.utils.HomeworkAttachmentOpener;
+import cz.vitek.bakalarium.utils.HomeworkDiffCallback;
+import cz.vitek.bakalarium.utils.MaterialLetterIcon;
 
 public class HomeworkAdapter extends RecyclerView.Adapter<HomeworkViewHolder> {
     private int type;
@@ -115,8 +115,9 @@ public class HomeworkAdapter extends RecyclerView.Adapter<HomeworkViewHolder> {
                 } else hasPermissions = true;
 
                 if (hasPermissions) {
-                    // open / download the attachment
-                    HomeworkAttachmentOpener.openAttachment(homework.getAttachmentList(), context);
+                    // process the attachment
+                    HomeworkAttachmentOpener attachmentOpener = new HomeworkAttachmentOpener(context, homework.getAttachmentList());
+                    attachmentOpener.processAttachment();
                 } else {
                     // check if user clicked "never ask again" in the system permission dialog
                     if (!ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -145,7 +146,7 @@ public class HomeworkAdapter extends RecyclerView.Adapter<HomeworkViewHolder> {
                                 .setPositiveButton(context.getString(R.string.grant_it), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        // ask for WRITE_EXTERNAL_STORAGE permission (READ will also be granted too because of the permission groups)
+                                        // ask for WRITE_EXTERNAL_STORAGE permission (READ will also be granted because of the permission groups)
                                         ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
                                     }
                                 })

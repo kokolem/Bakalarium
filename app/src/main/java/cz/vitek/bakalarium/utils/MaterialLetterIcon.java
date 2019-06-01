@@ -1,4 +1,4 @@
-package cz.vitek.bakalarium.Utils;
+package cz.vitek.bakalarium.utils;
 
 import android.graphics.drawable.Drawable;
 

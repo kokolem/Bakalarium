@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import cz.vitek.bakalarium.Homework.HomeworkFragment;
+import cz.vitek.bakalarium.homework.HomeworkFragment;
 
 public class MainAdapter extends FragmentPagerAdapter {
     private Resources resources;

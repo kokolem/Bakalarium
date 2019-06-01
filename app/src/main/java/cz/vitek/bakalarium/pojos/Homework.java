@@ -1,4 +1,4 @@
-package cz.vitek.bakalarium.POJOs;
+package cz.vitek.bakalarium.pojos;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import cz.vitek.bakalarium.Utils.Converters;
+import cz.vitek.bakalarium.utils.Converters;
 
 @Entity(indices = @Index(value = {"id"}, unique = true))
 @TypeConverters(Converters.class)

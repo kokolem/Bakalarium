@@ -1,4 +1,4 @@
-package cz.vitek.bakalarium.POJOs;
+package cz.vitek.bakalarium.pojos;
 
 import com.google.gson.annotations.SerializedName;
 

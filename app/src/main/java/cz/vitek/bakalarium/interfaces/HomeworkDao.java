@@ -1,4 +1,4 @@
-package cz.vitek.bakalarium.Interfaces;
+package cz.vitek.bakalarium.interfaces;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -9,7 +9,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import cz.vitek.bakalarium.POJOs.Homework;
+import cz.vitek.bakalarium.pojos.Homework;
 
 @Dao
 public interface HomeworkDao {

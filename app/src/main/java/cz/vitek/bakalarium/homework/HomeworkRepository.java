@@ -1,4 +1,4 @@
-package cz.vitek.bakalarium.Homework;
+package cz.vitek.bakalarium.homework;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,12 +17,12 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import cz.vitek.bakalarium.Interfaces.BakalariAPI;
-import cz.vitek.bakalarium.Interfaces.HomeworkDao;
-import cz.vitek.bakalarium.POJOs.Homework;
-import cz.vitek.bakalarium.POJOs.HomeworkList;
 import cz.vitek.bakalarium.R;
-import cz.vitek.bakalarium.Utils.TokenGenerator;
+import cz.vitek.bakalarium.interfaces.BakalariAPI;
+import cz.vitek.bakalarium.interfaces.HomeworkDao;
+import cz.vitek.bakalarium.pojos.Homework;
+import cz.vitek.bakalarium.pojos.HomeworkList;
+import cz.vitek.bakalarium.utils.TokenGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -1,4 +1,4 @@
-package cz.vitek.bakalarium.POJOs;
+package cz.vitek.bakalarium.pojos;
 
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;

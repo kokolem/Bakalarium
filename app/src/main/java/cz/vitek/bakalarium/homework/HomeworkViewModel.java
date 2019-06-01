@@ -1,4 +1,4 @@
-package cz.vitek.bakalarium.Homework;
+package cz.vitek.bakalarium.homework;
 
 import android.app.Application;
 import android.util.Log;
@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import cz.vitek.bakalarium.POJOs.Homework;
+import cz.vitek.bakalarium.pojos.Homework;
 
 public class HomeworkViewModel extends AndroidViewModel {
     private final int TYPE_TODO = 1;

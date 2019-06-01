@@ -1,4 +1,4 @@
-package cz.vitek.bakalarium.Homework;
+package cz.vitek.bakalarium.homework;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.vitek.bakalarium.POJOs.Homework;
 import cz.vitek.bakalarium.R;
+import cz.vitek.bakalarium.pojos.Homework;
 
 public class HomeworkFragment extends Fragment {
     private static final String TAG = "Bakalarium";

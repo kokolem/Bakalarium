@@ -28,8 +28,11 @@
     <string name="open_attachments">Otevřít přílohy</string>
     <string name="attachment_download">Stahuje se příloha domacího ůkolu.</string>
     <string name="permission_needed">Oprávnění je potřeba pro stahování příloh domácích úkolů..</string>
-    <string name="additional_permissions">Dodatečná oprávnění</string>
-    <string name="additional_permissions_explenation">Pokud chcete stahovat přílohy domácích úkolů, je potřeba aplikaci udělit oprávnění k zápisu do paměti vašeho zařízení. Chcete to udělat hned?</string>
-    <string name="yes">Ano</string>
-    <string name="no">Ne</string>
+    <string name="homework_attachments">Přílohy domácích úkolů</string>
+    <string name="homework_attachments_permissions">Pokud chcete otevírat přílohy domácích úkolů, je potřeba aplikaci povolit přístup do paměti vašeho zařízení.</string>
+    <string name="homework_attachments_permission_naa">Pokud chcete otevírat přílohy domácích úkolů, je potřeba aplikaci povolit přístup do paměti vašeho zařízení. Tuto akci je potřeba provést v nastavení.</string>
+    <string name="grant_it">Povolit</string>
+    <string name="go_to_settings">Jít do nastavení</string>
+    <string name="cancel">Zrušit</string>
+    <string name="settings_permissions">Klepněte na oprávnění a povolte přístup k úložišti.</string>
 </resources>

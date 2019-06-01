@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.view_pager);
         TabLayout tabLayout = findViewById(R.id.tabs);
         FragmentPagerAdapter adapter = new MainAdapter(getSupportFragmentManager(), getResources());
-        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        final SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
         String url = preferences.getString("school_url", "");
         String username = preferences.getString("username", "");
@@ -49,21 +49,21 @@ public class MainActivity extends AppCompatActivity {
             if (!askedForPermissions) {
                 // create a dialog explaining why the permissions are needed
                 new MaterialAlertDialogBuilder(this)
-                        .setTitle(getString(R.string.additional_permissions))
-                        .setMessage(getString(R.string.additional_permissions_explenation))
-                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                        .setTitle(getString(R.string.homework_attachments))
+                        .setMessage(getString(R.string.homework_attachments_permissions))
+                        .setPositiveButton(getString(R.string.grant_it), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // request permissions
+                                // only needs to request WRITE_EXTERNAL_STORAGE permission because read and write are in the same permission group
                                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+
+                                // save the fact that the app asked for permissions into shared prefs
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putBoolean("permissions_asked", true);
+                                editor.apply();
                             }
                         })
-                        .setNegativeButton(getString(R.string.no), null)
                         .show();
-                // save the fact that the app asked for permissions into shared prefs
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putBoolean("permissions_asked", true);
-                editor.apply();
             }
         }
 

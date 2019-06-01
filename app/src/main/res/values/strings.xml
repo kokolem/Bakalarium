@@ -27,8 +27,11 @@
     <string name="open_attachments">Open attachments</string>
     <string name="attachment_download">Downloading homework attachment.</string>
     <string name="permission_needed">The permission is needed in order to download homework attachments.</string>
-    <string name="additional_permissions">Additional permissions</string>
-    <string name="additional_permissions_explenation">If you want to download the attachments of your homework, you need to grant this app acces to your phones memory. Do you wish to do it now?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="homework_attachments">Homework attachments</string>
+    <string name="homework_attachments_permissions">In order to open attachments of your homework, Bakalarium needs to access your phones memory. To be able to do that, you need to grant the permission.</string>
+    <string name="homework_attachments_permission_naa">In order to open attachments of your homework, Bakalarium needs to access your phones memory. To be able to do that, you need to grant the permission in system settings.</string>
+    <string name="grant_it">Grant it</string>
+    <string name="go_to_settings">Go To Settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="settings_permissions">Click permissions and allow Storage.</string>
 </resources>

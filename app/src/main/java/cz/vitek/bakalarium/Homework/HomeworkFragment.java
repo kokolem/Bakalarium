@@ -1,32 +1,23 @@
 package cz.vitek.bakalarium.Homework;
 
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Objects;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cz.vitek.bakalarium.POJOs.Homework;
 import cz.vitek.bakalarium.R;
-import cz.vitek.bakalarium.Utils.MaterialLetterIcon;
 
 public class HomeworkFragment extends Fragment {
     private static final String TAG = "Bakalarium";
@@ -61,7 +52,7 @@ public class HomeworkFragment extends Fragment {
             @Override
             public void onChanged(List<Homework> homework) {
                 adapter.updateList(homework);
-                recyclerView.smoothScrollToPosition(0);
+                recyclerView.scrollToPosition(0);
             }
         });
 

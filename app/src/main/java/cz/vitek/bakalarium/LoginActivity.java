@@ -195,7 +195,6 @@ public class LoginActivity extends AppCompatActivity {
                             progressBar.setVisibility(View.GONE);
                             loginButton.setTextColor(getResources().getColor(android.R.color.white));
                             loginButton.setClickable(true);
-                            // TODO: This could also mean that there is no internet connection
                             schoolURLInputLayout.setError(getString(R.string.wrong_address_no_internet));
                             Log.d(TAG, "onFailure: not a real address or no internet connection");
                             Log.d(TAG, "onFailure: " + t.toString());

@@ -91,7 +91,8 @@ public class Homework {
         try {
             handIn = formatter.parse(timeStampHandIn);
             assigned = formatter.parse(timeStampAssigned);
-        } catch (ParseException ignored){}
+        } catch (ParseException ignored) {
+        }
 
         // TODO: "probehlo" and "aktivni" are not the only possibilities
         isArchived = status.equals("probehlo");

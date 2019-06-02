@@ -30,26 +30,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class HomeworkRepository {
+    private static final Object LOCK = new Object();
+    private static final String TAG = "Bakalarium";
+    private static HomeworkRepository instance;
+    private static SharedPreferences preferences;
     private final HomeworkDao homeworkDao;
     private final Context context;
     private BakalariAPI bakalariAPI;
     private long lastFetched;
-
-    private static final Object LOCK = new Object();
-    private static HomeworkRepository instance;
-    private static SharedPreferences preferences;
-
-    private static final String TAG = "Bakalarium";
-
-    // this is a singleton
-    public static HomeworkRepository getInstance(Context context) {
-        if (instance == null) {
-            synchronized (LOCK) {
-                instance = new HomeworkRepository(context);
-            }
-        }
-        return instance;
-    }
 
     private HomeworkRepository(Context context) {
         this.context = context.getApplicationContext();
@@ -65,6 +53,16 @@ public class HomeworkRepository {
                         new Persister(new AnnotationStrategy())))
                 .build();
         bakalariAPI = retrofit.create(BakalariAPI.class);
+    }
+
+    // this is a singleton
+    public static HomeworkRepository getInstance(Context context) {
+        if (instance == null) {
+            synchronized (LOCK) {
+                instance = new HomeworkRepository(context);
+            }
+        }
+        return instance;
     }
 
     public LiveData<List<Homework>> getToDo() {

@@ -12,13 +12,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import cz.vitek.bakalarium.homework.HomeworkFragment;
 
 public class MainAdapter extends FragmentPagerAdapter {
+    private static final String TAG = "Bakalarium";
+    private final String TYPE = "type";
     private Resources resources;
     private Bundle todoBundle = new Bundle();
     private Bundle doneBundle = new Bundle();
     private Bundle archiveBundle = new Bundle();
-
-    private static final String TAG = "Bakalarium";
-    private final String TYPE = "type";
 
     public MainAdapter(FragmentManager fm, Resources resources) {
         super(fm);

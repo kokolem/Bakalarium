@@ -29,7 +29,8 @@ public class Converters {
             return null;
         }
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Attachment>>() {}.getType();
+        Type type = new TypeToken<List<Attachment>>() {
+        }.getType();
         return gson.toJson(attachments, type);
     }
 
@@ -39,7 +40,8 @@ public class Converters {
             return null;
         }
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Attachment>>() {}.getType();
+        Type type = new TypeToken<List<Attachment>>() {
+        }.getType();
         return gson.fromJson(attachments, type);
     }
 

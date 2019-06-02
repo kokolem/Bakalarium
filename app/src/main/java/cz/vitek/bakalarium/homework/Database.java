@@ -10,8 +10,6 @@ import cz.vitek.bakalarium.pojos.Homework;
 
 @androidx.room.Database(entities = {Homework.class}, version = 1)
 public abstract class Database extends RoomDatabase {
-    public abstract HomeworkDao homeworkDao();
-
     private static final Object LOCK = new Object();
     private static Database instance;
 
@@ -24,4 +22,6 @@ public abstract class Database extends RoomDatabase {
         }
         return instance;
     }
+
+    public abstract HomeworkDao homeworkDao();
 }

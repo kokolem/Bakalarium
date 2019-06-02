@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 // if above conditions are met
-                if (valid){
+                if (valid) {
 
                     // show progress bar instead of the "Log in" text
                     progressBar.setVisibility(View.VISIBLE);

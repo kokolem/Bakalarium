@@ -44,7 +44,7 @@ public class HomeworkFragment extends Fragment {
         // if so, construct the adapter with an empty list as the data set
         // view model will supply the data as soon as it's fetched from the server via notifying the observer
         List<Homework> homework = viewModel.getHomework().getValue() == null ? new ArrayList<Homework>() : viewModel.getHomework().getValue();
-        final HomeworkAdapter adapter = new HomeworkAdapter(type, homework, getContext(),viewModel);
+        final HomeworkAdapter adapter = new HomeworkAdapter(type, homework, getContext(), viewModel);
         recyclerView.setAdapter(adapter);
 
         // when the data is changed, update the adapters data set

@@ -12,11 +12,10 @@ import java.util.List;
 import cz.vitek.bakalarium.pojos.Homework;
 
 public class HomeworkViewModel extends AndroidViewModel {
+    private static final String TAG = "Bakalarium";
     private final int TYPE_TODO = 1;
     private final int TYPE_DONE = 2;
     private final int TYPE_ARCHIVE = 3;
-    private static final String TAG = "Bakalarium";
-
     private HomeworkRepository homeworkRepository = HomeworkRepository.getInstance(getApplication());
     private int type;
 
@@ -49,7 +48,7 @@ public class HomeworkViewModel extends AndroidViewModel {
         return homework;
     }
 
-    public void changeDone(Homework homework, boolean done){
+    public void changeDone(Homework homework, boolean done) {
         homework.setDone(done);
         homeworkRepository.update(homework);
     }

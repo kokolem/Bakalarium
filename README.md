@@ -1,5 +1,14 @@
-# Bakalarium
-Alternativní aplikace pro Bakaláře pro Android.
+<h1 align="center">Bakalarium</h1>
+
+<div align="center">
+  
+  Alternativní aplikace pro Bakaláře pro Android.
+  
+  ![GitHub](https://img.shields.io/github/license/kokolem/Bakalarium)
+  ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kokolem/Bakalarium)
+  ![GitHub last commit](https://img.shields.io/github/last-commit/kokolem/Bakalarium)
+  
+</div
 
 ## Co bude umět
 Plánem je vytvořit kompletní náhradu pro oficiální aplikaci. To znamená, že Bakalarium by mělo mít všechny funkce Bakalářů, tj.:

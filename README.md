@@ -8,7 +8,7 @@
   ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kokolem/Bakalarium)
   ![GitHub last commit](https://img.shields.io/github/last-commit/kokolem/Bakalarium)
   
-</div
+</div>
 
 ## Co bude umět
 Plánem je vytvořit kompletní náhradu pro oficiální aplikaci. To znamená, že Bakalarium by mělo mít všechny funkce Bakalářů, tj.:

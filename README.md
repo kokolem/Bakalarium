@@ -1,3 +1,7 @@
+<p align="center">
+ <img width="150" src="https://github.com/kokolem/Bakalarium/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" alt="Bookmark Manager logo"/>
+</p>
+
 <h1 align="center">Bakalarium</h1>
 
 <div align="center">
